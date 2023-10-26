@@ -1,5 +1,6 @@
 package com.amigos.learn.sbm.customer.service;
 
+import com.amigos.learn.sbm.customer.dao.CustomerRepoInterface;
 import com.amigos.learn.sbm.customer.dao.CustomerRepository;
 import com.amigos.learn.sbm.customer.entity.Customer;
 import com.amigos.learn.sbm.customer.exception.CustomerNotFoundException;
@@ -17,18 +18,15 @@ import java.util.Objects;
 public class CustomerService {
 
     @Autowired
-    @Qualifier("fake")
-    private final CustomerRepository repository;
+    private final CustomerRepoInterface customerRepoInterface;
 
     public List<Customer> getCustomers() {
-        return repository.getCustomers();
+        return customerRepoInterface.getCustomersFromRepository();
     }
 
     public Customer getCustomer(Long customerId) {
-        return getCustomers()
-                .stream()
-                .filter(customer -> customer.getId().equals(customerId))
-                .findFirst()
+        return customerRepoInterface
+                .getCustomerFromRepository(customerId)
                 .orElseThrow(() -> new CustomerNotFoundException("Requested customer with customerId: " + customerId + " was not found")
                 );
     }

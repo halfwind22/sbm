@@ -1,19 +1,22 @@
 package com.amigos.learn.sbm.customer.dao;
 
 import com.amigos.learn.sbm.customer.entity.Customer;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.Optional;
 
-public class FakeCustomerRepositoryImpl implements CustomerRepoInterface {
+public class ActualCustomerRepositoryImpl implements CustomerRepoInterface {
+    @Autowired
+    CustomerRepository customerRepository;
+
     @Override
     public List<Customer> getCustomersFromRepository() {
-        return List.of(new Customer(1L, "JohnDoe", "456", "abc@gmail.com"), new Customer(2L, "FooBar", "123", "xyz@gmail.com"));
-
+        return customerRepository.findAll();
     }
 
     @Override
     public Optional<Customer> getCustomerFromRepository(Long customerId) {
-        return Optional.of(new Customer(1L, "JohnDoe", "456", "abc@gmail.com"));
+        return customerRepository.findById(customerId);
     }
 }
