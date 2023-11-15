@@ -1,11 +1,14 @@
 package com.amigos.learn.sbm.customer.service;
 
+import ch.qos.logback.classic.Logger;
 import com.amigos.learn.sbm.customer.dao.CustomerRepoInterface;
 import com.amigos.learn.sbm.customer.dao.CustomerRepository;
 import com.amigos.learn.sbm.customer.entity.Customer;
 import com.amigos.learn.sbm.customer.exception.CustomerNotFoundException;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;

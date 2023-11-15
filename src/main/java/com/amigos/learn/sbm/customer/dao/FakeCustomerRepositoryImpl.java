@@ -1,6 +1,7 @@
 package com.amigos.learn.sbm.customer.dao;
 
 import com.amigos.learn.sbm.customer.entity.Customer;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
